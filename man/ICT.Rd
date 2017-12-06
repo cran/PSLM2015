@@ -3,67 +3,75 @@
 \docType{data}
 \name{ICT}
 \alias{ICT}
-\title{Information and communication technology used data from Pakistan Social and Living Standards Measurement 2015-16}
-\format{A \code{data.table} and  \code{data.frame} with 115910 obs. of  28 variables.
+\title{Information and communication technology data from Pakistan Social and Living Standard Measures 2015}
+\format{A \code{data.table} and  \code{data.frame} with 115910 observations of  28 variables.
 \describe{
-       \item{\code{hhcode}}{10 digits Household code.}
+       \item{\code{hhcode}}{Household 10 digits  code.}
        \item{\code{Province}}{Province of Pakistan}
-       \item{\code{Region}}{Urban or Rural area of Pakitan}
-       \item{\code{Psu}}{08 digits code of primary sampling unit}
-       \item{\code{sec}}{Questionair section}
-       \item{\code{idc}}{Identity code of a person}
-       \item{\code{sictq01}}{Have you used a computer (desktop, laptop, tablet or similar) from any location in the last three months?}
-       \item{\code{sictq0201}}{Which of the following computer-related activities have you carried out in the last three months(Option-1)?}
-       \item{\code{sictq0202}}{Which of the following computer-related activities have you carried out in the last three months(Option-2)?}
-       \item{\code{sictq0203}}{Which of the following computer-related activities have you carried out in the last three months(Option-3)?}
-       \item{\code{sictq0204}}{Which of the following computer-related activities have you carried out in the last three months(Option-4)?}
-       \item{\code{sictq0205}}{Which of the following computer-related activities have you carried out in the last three months(Option-5)?}
-       \item{\code{sictq0206}}{Which of the following computer-related activities have you carried out in the last three months(Option-6)?}
-       \item{\code{sictq03}}{Have you used a mobile telephone in the last three months?}
-       \item{\code{sictq04}}{Have you used the Internet from any location in the last three months?}
-       \item{\code{sictq05}}{How often did you typically use the Internet during the last three months (from any location)?}
-       \item{\code{sictq06}}{Have you used the Internet from any location in the last twelve months?}
-       \item{\code{sictq0701}}{Where did you use the Internet in the last 12 months (Option-1)?}
-       \item{\code{sictq0702}}{Where did you use the Internet in the last 12 months(Option-2)?}
-       \item{\code{sictq0703}}{Where did you use the Internet in the last 12 months(Option-3)?}
-       \item{\code{sictq0704}}{Where did you use the Internet in the last 12 months(Option-4)?}
-       \item{\code{sictq0705}}{Where did you use the Internet in the last 12 months(Option-5)?}
-       \item{\code{sictq0706}}{Where did you use the Internet in the last 12 months(Option-6)?}
-       \item{\code{sictq0801}}{For which of the following activities did you use the Internet for private purposes in the last 12 months (from any location)(Option-1)?}
-       \item{\code{sictq0802}}{For which of the following activities did you use the Internet for private purposes in the last 12 months (from any location)(Option-2)?}
-       \item{\code{sictq0803}}{For which of the following activities did you use the Internet for private purposes in the last 12 months (from any location)(Option-3)?}
-       \item{\code{sictq0804}}{For which of the following activities did you use the Internet for private purposes in the last 12 months (from any location)(Option-4)?}
-       \item{\code{sictq0805}}{For which of the following activities did you use the Internet for private purposes in the last 12 months (from any location)(Option-5)?}
-       \item{\code{sictq0806}}{For which of the following activities did you use the Internet for private purposes in the last 12 months (from any location)(Option-6)?}
+       \item{\code{Region}}{Region of Pakistan (Rural/Urban)}
+       \item{\code{PSU}}{primary sampling unit 8 digits code}
+       \item{\code{idc}}{Identification code}
+       \item{\code{sictq01}}{Computer using in last month (Yes/No)}
+       \item{\code{sictq0201}}{Computer related 1st activity}
+       \item{\code{sictq0202}}{Computer related 2nd activity}
+       \item{\code{sictq0203}}{Computer related 3rd activity}
+       \item{\code{sictq0204}}{Computer related 4th activity}
+       \item{\code{sictq0205}}{Computer related 5th activity}
+       \item{\code{sictq0206}}{Computer related 6th activity}
+       \item{\code{sictq03}}{Mobile using in last month (Yes/No)}
+       \item{\code{sictq04}}{Internet Using in last month (Yes/No)}
+       \item{\code{sictq05}}{Internet used in last three months}
+       \item{\code{sictq06}}{Internet using in last year (Yes/No)}
+       \item{\code{sictq0701}}{Internet using of 1st location}
+       \item{\code{sictq0702}}{Internet using of 2nd location}
+       \item{\code{sictq0703}}{Internet using of 3rd location}
+       \item{\code{sictq0704}}{Internet using of 4th location}
+       \item{\code{sictq0705}}{Internet using of 5th location}
+       \item{\code{sictq0706}}{Internet using of 6th location}
+       \item{\code{sictq0801}}{Private purpose internet using activity 1}
+       \item{\code{sictq0802}}{Private purpose internet using activity 2}
+       \item{\code{sictq0803}}{Private purpose internet using activity 3}
+       \item{\code{sictq0804}}{Private purpose internet using activity 4}
+       \item{\code{sictq0805}}{Private purpose internet using activity 5}
+       \item{\code{sictq0806}}{Private purpose internet using activity 6}
        }}
 \usage{
 data(ICT)
 }
 \description{
-\code{ICT} Information and communication technology used data from Pakistan Social and Living Standards Measurement 2015-16.
+\code{ICT} data from Pakistan Social and Living Standard Measures 2015.
+}
+\examples{
+ # library(PSLM2015)
+ # data("ICT")
+ # library(dplyr)
+ # TechRate<- ICT \%>\%
+ #   group_by(Province, sictq01) \%>\%
+ #   summarise(Count = n())
+ # 
+ # library(ggplot2)
+ # ggplot(data = TechRate, mapping = aes(x = Province, y = Count)) +
+ #   geom_col() + labs(colour = "Cylinders") +
+ #   facet_grid(. ~ sictq01)
 }
 \references{
 \enumerate{
-\item Pakistan Bureau of Statistics, Micro data (\url{http://www.pbs.gov.pk/}).
+\item Pakistan Bureau of Statistics, Micro data (\url{http://www.pbs.gov.pk/content/microdata}).
  }
 }
 \seealso{
-\code{\link{Agriculture}}
- , \code{\link{AssetLiability}}
+\code{\link{Employment}}
  , \code{\link{Education}}
- , \code{\link{Employment}}
  , \code{\link{Expenditure}}
- , \code{\link{Income}}
- , \code{\link{Land}}
+ , \code{\link{HHRoster}}
+ , \code{\link{Housing}}
  , \code{\link{LiveStock}}
- , \code{\link{NonAgriculture}}
- , \code{\link{OtherIncome}}
- , \code{\link{PaidReceived}}
- , \code{\link{SurveyInfo}}
+ , \code{\link{Agriculture}}
 }
 \author{
-Muhammad Yaseen (\email{myaseen208@gmail.com})
-
-Muhammad Arfan Dilber (\email{pbsfsd041@gmail.com})
+\enumerate{
+\item Muhammad Yaseen (\email{myaseen208@gmail.com})
+ \item Muhammad Arfan Dilber (\email{pbsfsd041@gmail.com})
+ }
 }
 \keyword{datasets}

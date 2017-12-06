@@ -1,45 +1,61 @@
-#' @title Household's annual expenditure data from Pakistan Social and Living Standards Measurement 2015-16 
+#' @title Household's total expenditure data from Pakistan Social and Living Standards Measurement 2015-16
 #' @name   Expenditure
 #' @docType data
 #' @keywords datasets
 #' @usage data(Expenditure)
-#' @description \code{Expenditure} Household's annual expenditure data from Pakistan Social and Living Standards Measurement 2015-16.
-#' @format A \code{data.table} and  \code{data.frame} with 24238 obs. of  15 variables.
+#' @description \code{Expenditure} data from Pakistan Social and Living Standards Measurement 2015-16.
+#' @format A \code{data.table} and  \code{data.frame} with 24238 observation of  14 variables.
 #' \describe{
-#'        \item{\code{hhcode}}{10 digits Household code.}
-#'        \item{\code{Province}}{Province of Pakistan}
-#'        \item{\code{Region}}{Urban or Rural area of Pakitan}
-#'        \item{\code{Psu}}{08 digits code of primary sampling unit}
-#'        \item{\code{sec}}{Questionair section}
-#'        \item{\code{filler}}{}
-#'        \item{\code{BS2QA1}}{total section 4 A code 1000 col valu 2}
-#'        \item{\code{BS2QA2}}{A-total section 4A code 1000 multiply by 26}
-#'        \item{\code{BS2QB1}}{total section 4B code 2000 col.value 2}
-#'        \item{\code{BS2QB2}}{B-total section 4B code 2000 multiply by 12}
-#'        \item{\code{BS2QC1}}{total section 4C code 4000 col value 2}
-#'        \item{\code{BS2QC2}}{C-total section 4C code 4000 multiply by 12}
-#'        \item{\code{BS2QD1}}{total section 4D code 5000 col vale 1}
-#'        \item{\code{BS2QD2}}{D- total section 4D code 5000}
-#'        \item{\code{BS2QABCD}}{Total - sum(A,B,C,D)}
+#'        \item{\code{hhcode}}{Household 10 digits code.}
+#'        \item{\code{Food}}{Food and non-alcoholic beverages}
+#'        \item{\code{Hotels}}{Restaurants and hotels}
+#'        \item{\code{Furnishing}}{Furnishing, Household equipment and routine maintenance of the house}
+#'        \item{\code{Misc}}{Miscellaneous goods and services}
+#'        \item{\code{Tobacco}}{Alcoholic beverages and tobacco}
+#'        \item{\code{Housing}}{Housing, Water, Electricity, Gas and other fuels}
+#'        \item{\code{Clothing}}{Clothing and Foot wear}
+#'        \item{\code{Health}}{Health}
+#'        \item{\code{Transport}}{Transport}
+#'        \item{\code{Communication}}{Communication, Postal services}
+#'        \item{\code{Recreation}}{Recreation and Culture}
+#'        \item{\code{Education}}{Education}
+#'        \item{\code{DurableGoods}}{Durable Goods}
+#'        \item{\code{NonDurable}}{Total expenditure on non-durable goods}
 #'        }
-#' @author Muhammad Yaseen (\email{myaseen208@gmail.com})
-#' @author Muhammad Arfan Dilber (\email{pbsfsd041@gmail.com})
-#' 
+#' @author \enumerate{
+#' \item Muhammad Yaseen (\email{myaseen208@gmail.com})
+#'  \item Muhammad Arfan Dilber (\email{pbsfsd041@gmail.com})
+#'  }
 #' @references \enumerate{
-#' \item Pakistan Bureau of Statistics, Micro data (\url{http://www.pbs.gov.pk/}).
+#' \item Pakistan Bureau of Statistics, Micro data (\url{http://www.pbs.gov.pk/content/microdata}).
 #'  }
 #'
-#' @seealso 
+#'
+#'
+#' @seealso
 #'    \code{\link{Agriculture}}
-#'  , \code{\link{AssetLiability}}
 #'  , \code{\link{Education}}
-#'  , \code{\link{Employment}}
+#'  , \code{\link{Expenditure}}
+#'  , \code{\link{HHRoster}}
+#'  , \code{\link{Housing}}
 #'  , \code{\link{ICT}}
-#'  , \code{\link{Income}}
-#'  , \code{\link{Land}}
 #'  , \code{\link{LiveStock}}
-#'  , \code{\link{NonAgriculture}}
-#'  , \code{\link{OtherIncome}}
-#'  , \code{\link{PaidReceived}}
-#'  , \code{\link{SurveyInfo}}
+#'
+#' @importFrom magrittr  %>%
+#' @importFrom dplyr group_by summarise
+#' @importFrom ggplot2  ggplot
+#'
+#' @examples
+#'  # library(PSLM2015)
+#'  # data("Expenditure")
+#'  # data("Employment")
+#'  # library(dplyr)
+#'  # income<- Employment %>% rowwise() %>%
+#'  #   mutate(TotalIncome = sum((s1bq08*s1bq09), 
+#'  #    s1bq10, s1bq15, s1bq17, s1bq19, s1bq21
+#'  #    , na.rm = TRUE))
+#'  # exp<-Expenditure %>% select(c("hhcode","NonDurable"))
+#'  # HHIncome<-income %>% group_by(hhcode) %>% 
+#'  # summarise(HHAvgIncome = sum(TotalIncome))
+#'  # IncomeExp<-HHIncome %>% left_join(exp, by = "hhcode")
 NULL

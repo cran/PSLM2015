@@ -3,61 +3,86 @@
 \docType{data}
 \name{Education}
 \alias{Education}
-\title{Education and expenditure on education data from Pakistan Social and Living Standards Measurement 2015-16}
-\format{A \code{data.table} and  \code{data.frame} with 141828 obs. of  23 variables.
+\title{Education data from Pakistan Social and Living Standards Measurement 2015-16}
+\format{A \code{data.table} and  \code{data.frame} with 141828 observations of  22 variables.
+
 \describe{
-       \item{\code{hhcode}}{10 digits Household code.}
+       \item{\code{hhcode}}{Household 10 digits  code.}
        \item{\code{Province}}{Province of Pakistan}
-       \item{\code{Region}}{Urban or Rural area of Pakitan}
-       \item{\code{Psu}}{08 digits code of primary sampling unit}
-       \item{\code{sec}}{Questionair section}
-       \item{\code{idc}}{Identity code of household members}
-       \item{\code{s2ac01}}{Can this person read in any language with understanding?}
-       \item{\code{s2ac02}}{Can this person write in any language with understanding?}
-       \item{\code{s2ac03}}{Can this person solve simple arithmatic questions?}
-       \item{\code{s2ac04}}{Has ever attended any educational institution?}
-       \item{\code{s2ac05}}{What was the highest level of education Passed?}
-       \item{\code{s2ac06}}{Is the person currently studying in any educational institution?}
-       \item{\code{s2ac07}}{In which is the person currently studying?}
-       \item{\code{s2ac08}}{What is the type of institution the person is currently attending?}
-       \item{\code{s2ac9a}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Fees, Admission, Registration, Funds and Donations?}
-       \item{\code{s2ac9b}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Uniform? }
-       \item{\code{s2ac9c}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Books and stationery items? }
-       \item{\code{s2ac9d}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Examination Fee? }
-       \item{\code{s2ac9e}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Private Tuition? }
-       \item{\code{s2ac9f}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Transport? }
-       \item{\code{s2ac9g}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Hostel Expenses? }
-       \item{\code{s2ac9h}}{How much has this household spent during the last 1 year for each household member presently enrolled in school for Other Expenses? }
-       \item{\code{s2ac9i}}{How much has this household spent during the last 1 year for each household member presently enrolled in school Total? }
+       \item{\code{Region}}{Region of Pakistan (Rural/Urban)}
+       \item{\code{PSU}}{primary sampling unit 8 digits code}
+       \item{\code{idc}}{Identity code of household member}
+       \item{\code{s2ac01}}{Can read with understanding}
+       \item{\code{s2ac02}}{Can Write with understanding}
+       \item{\code{s2ac03}}{Can solve arithmatic questions}
+       \item{\code{s2ac04}}{Attended any educational institution}
+       \item{\code{s2ac05}}{Highest level of education passed}
+       \item{\code{s2ac06}}{Currently attending educational institution}
+       \item{\code{s2ac07}}{Currently studying class}
+       \item{\code{s2ac08}}{Type of currently attending institution}
+       \item{\code{s2ac9a}}{Last year expenditure on school Fees/Admission/Registration/Funds/Donations?}
+       \item{\code{s2ac9b}}{Last year expenditure on school Uniform?}
+       \item{\code{s2ac9c}}{Last year expenditure on school Books/stationery items?}
+       \item{\code{s2ac9d}}{Last year expenditure on school Examination Fee?}
+       \item{\code{s2ac9e}}{Last year expenditure on Private Tuition?}
+       \item{\code{s2ac9f}}{Last year expenditure on school transportation?}
+       \item{\code{s2ac9g}}{Last year expenditure on school hostel expenses?}
+       \item{\code{s2ac9h}}{Last year expenditure on school other expenses?}
+       \item{\code{s2ac9i}}{Total expenditure on schooling}
        }}
 \usage{
 data(Education)
 }
 \description{
-\code{Education} Education and expenditure on education data from Pakistan Social and Living Standards Measurement 2015-16.
+\code{Education} data from Pakistan Social and Living Standards Measurement 2015-16.
+}
+\examples{
+ # library(PSLM2015)
+ # library(dplyr)
+ # data("Education")
+ # TotalP <- Education \%>\% group_by(Province, Region) \%>\%
+ #   summarise(TotalPersons = n())
+ #   
+ # literacy <- Education \%>\% filter(s2ac01 == "yes" & s2ac02 == "yes" & s2ac03 == "yes")
+ #   literateP <- literacy \%>\%
+ #   group_by(Province, Region) \%>\%
+ #   summarise(literatePersons = n())
+ #   literacyR <- TotalP \%>\% left_join(literateP, by = c("Province", "Region"))
+ #   literacyRate <- mutate(literacyR, Rate = literatePersons/TotalPersons*100)
+ # library(ggplot2)
+ # ggplot(data = literacyRate, mapping = aes(x = Province, y = Rate)) +
+ #   geom_col() +
+ #   facet_grid(. ~ Region)
+ # 
+ # # Merging two data files
+ # 
+ #   data("Employment")
+ #   data("Education")
+ #   income <- Employment \%>\% rowwise() \%>\%
+ #     mutate(TotalIncome = sum((s1bq08*s1bq09),s1bq10,s1bq15,s1bq17,s1bq19,s1bq21, na.rm = TRUE))
+ #   ab <- income \%>\% select(hhcode, idc, TotalIncome)
+ #   EduEmp <- Education \%>\% left_join(ab, by = c("hhcode", "idc"))
+ #   str(EduEmp)
+
 }
 \references{
 \enumerate{
-\item Pakistan Bureau of Statistics, Micro data (\url{http://www.pbs.gov.pk/}).
+\item Pakistan Bureau of Statistics, Micro data (\url{http://www.pbs.gov.pk/content/microdata}).
  }
 }
 \seealso{
 \code{\link{Agriculture}}
- , \code{\link{AssetLiability}}
  , \code{\link{Employment}}
  , \code{\link{Expenditure}}
+ , \code{\link{HHRoster}}
+ , \code{\link{Housing}}
  , \code{\link{ICT}}
- , \code{\link{Income}}
- , \code{\link{Land}}
  , \code{\link{LiveStock}}
- , \code{\link{NonAgriculture}}
- , \code{\link{OtherIncome}}
- , \code{\link{PaidReceived}}
- , \code{\link{SurveyInfo}}
 }
 \author{
-Muhammad Yaseen (\email{myaseen208@gmail.com})
-
-Muhammad Arfan Dilber (\email{pbsfsd041@gmail.com})
+\enumerate{
+\item Muhammad Yaseen (\email{myaseen208@gmail.com})
+ \item Muhammad Arfan Dilber (\email{pbsfsd041@gmail.com})
+ }
 }
 \keyword{datasets}
